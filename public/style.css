@@ -62,3 +62,4 @@ input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10
 .ahead span{font:600 1rem Lora,Georgia,serif;color:var(--accent)}
 .verse{border:1px solid var(--line);border-left:4px solid var(--accent)}
 @media (max-width:460px){.buddy{width:130px}.bubble{max-width:none;padding:12px 14px}.bq{font-size:.92rem}h1{font-size:1.6rem}}
+.aifoot{color:var(--muted);font-size:.75rem;margin:10px 0 6px}

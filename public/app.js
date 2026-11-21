@@ -48,8 +48,8 @@ function render(d, question) {
   const card = el("div", "answer-card");
   const head = el("div", "ahead");
   const av = el("img"); av.src = "/jesus.svg"; av.alt = "";
-  head.append(av, el("span", null, "What Jesus taught"));
-  card.append(head, el("div", "answer", d.answer));
+  head.append(av, el("span", null, "Jesus"));
+  card.append(head, el("div", "answer", d.answer), el("p", "aifoot", "AI-written in the voice of Jesus, based on Scripture"));
   out.append(card);
   for (const v of d.verses) {
     const box = el("div", "verse");
