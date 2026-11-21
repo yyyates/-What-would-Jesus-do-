@@ -22,26 +22,26 @@
       <p class="bref">Matthew 11:28</p>
     </div>
   </section>
-  <h1>What's on your heart today?</h1>
-  <p class="sub">Ask Jesus anything about your life. Get a personal answer in his words, with the Bible verses behind it.</p>
+  <h1 id="h1">What's on your heart today?</h1>
+  <p class="sub" id="sub">Talk with Jesus about anything, big or small. Get personal answers in his words, with the Bible verses behind them.</p>
+  <div id="out" aria-live="polite"></div>
   <form id="f">
-    <textarea id="q" maxlength="1500" placeholder="e.g. How do I forgive someone who hurt me and never apologized?" required></textarea>
+    <textarea id="q" maxlength="1500" placeholder="Ask Jesus anything…" required></textarea>
     <div class="row">
       <div class="chips">
         <span class="chip">I'm anxious about money</span>
-        <span class="chip">Should I take this new job?</span>
+        <span class="chip">Is it ever OK to lie?</span>
         <span class="chip">I feel far from God</span>
       </div>
-      <button class="go" id="b">Ask</button>
+      <div class="btns"><button class="ghost" id="newchat" type="button" hidden>New chat</button><button class="go" id="b">Send</button></div>
     </div>
   </form>
-  <div id="out" aria-live="polite"></div>
   <div class="upsell" id="upsell" hidden>
     <strong>Go deeper with Premium</strong>
-    <p>Unlimited questions, follow-up questions, and your past answers saved.</p>
+    <p>Unlimited messages, and your conversations saved.</p>
     <div class="row"><button class="go" data-plan="monthly">$4.99 / month</button><button class="ghost" data-plan="yearly">$39 / year (save 35%)</button></div>
   </div>
-  <section id="hist" hidden><h2 class="h2">Your recent questions</h2><ul id="histList"></ul></section>
+  <section id="hist" hidden><h2 class="h2">Your recent conversations</h2><ul id="histList"></ul></section>
   <div class="donate" id="donate">This site is free and runs on gifts. If it has blessed you, <a id="donateLink" href="#" target="_blank" rel="noopener">help keep it going</a>.</div>
   <footer>Answers are written by AI in the voice of Jesus, based on his teachings in the Bible. They are not actually from Jesus or God, and they are not a substitute for your pastor, church community, or professional medical, legal or mental-health help. Verses are quoted from the King James Version (public domain). If you are in crisis in the US, call or text 988.
     <div class="nav"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div></footer>

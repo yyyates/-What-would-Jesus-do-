@@ -45,7 +45,7 @@ How sign-in works without passwords: after paying, the member's browser gets a s
 |---|---|---|
 | `ANTHROPIC_API_KEY` | none | Your key. Without it the app runs in demo mode. |
 | `MODEL` | `claude-haiku-5-5` | Cheapest. `claude-sonnet-5-5` gives richer answers at ~10x cost. |
-| `FREE_PER_DAY` | `3` | Free questions per visitor per day. |
+| `FREE_PER_DAY` | `10` | Free messages per visitor per day. |
 | `DAILY_QUESTION_CAP` | `2000` | Whole-site daily limit, protects your bill. |
 | `DONATE_URL` | none | If set, shows a "help keep it going" link (Stripe Payment Link, Buy Me a Coffee, etc.). |
 | `STRIPE_SECRET_KEY` | none | Stripe secret key. Premium is hidden without it. |
@@ -77,7 +77,7 @@ About 1K input + 500 to 800 output tokens. Estimates, measure with real traffic:
 
 ## Making money (sketch)
 
-- **Freemium (built in):** 3 free questions a day. Premium at $4.99/month or $39/year: unlimited questions, follow-ups, saved history.
+- **Freemium (built in):** 10 free messages a day. Premium at $4.99/month or $39/year: unlimited questions, follow-ups, saved history.
 - **Daily devotional email/push:** free list builder; a personalized version is a premium perk. The email list is the most valuable asset.
 - **Donations / "pay it forward":** a tip jar (Stripe Payment Links, Buy Me a Coffee) fits this audience well. "Sponsor 100 questions for someone who can't pay."
 - **Churches and ministries (B2B):** a white-label widget for church websites at $20 to $50/month per church.

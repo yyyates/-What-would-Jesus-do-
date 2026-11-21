@@ -63,3 +63,14 @@ input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10
 .verse{border:1px solid var(--line);border-left:4px solid var(--accent)}
 @media (max-width:460px){.buddy{width:130px}.bubble{max-width:none;padding:12px 14px}.bq{font-size:.92rem}h1{font-size:1.6rem}}
 .aifoot{color:var(--muted);font-size:.75rem;margin:10px 0 6px}
+.btns{display:flex;gap:8px;margin-left:auto}
+#out{margin:0 0 16px}
+.me{margin:18px 0 10px auto;max-width:85%;width:fit-content;background:var(--accent);color:var(--accent-ink);border-radius:18px 18px 4px 18px;padding:10px 14px;white-space:pre-wrap}
+.turn{margin-bottom:6px}
+.chatting .hero{display:none}
+.chatting #h1,.chatting #sub{display:none}
+.chatting .chips{display:none}
+.mini{display:none;align-items:center;gap:10px;margin:4px 0 8px}
+.mini img{width:40px;height:40px}
+.chatting .mini{display:flex}
+.chatting textarea{min-height:52px}

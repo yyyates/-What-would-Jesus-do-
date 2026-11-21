@@ -13,7 +13,7 @@ services:
       - key: MODEL
         value: claude-haiku-5-5
       - key: FREE_PER_DAY
-        value: "3"
+        value: "10"
       - key: DAILY_QUESTION_CAP
         value: "2000"
       - key: DONATE_URL
