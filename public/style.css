@@ -74,3 +74,4 @@ input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10
 .mini img{width:40px;height:40px}
 .chatting .mini{display:flex}
 .chatting textarea{min-height:52px}
+.vt{font-size:.95rem}.verse{padding:10px 14px;margin:10px 0}

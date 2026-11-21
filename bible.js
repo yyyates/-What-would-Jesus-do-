@@ -45,7 +45,7 @@ function lookup({ book, chapter, verse_start, verse_end }) {
   let end = Number(verse_end || verse_start);
   if (!Number.isInteger(start) || start < 1 || start > ch.length) return null;
   if (!Number.isInteger(end) || end < start) end = start;
-  end = Math.min(end, ch.length, start + 7); // keep passages short
+  end = Math.min(end, ch.length, start + 2); // keep passages short (max 3 verses)
   const verses = [];
   for (let v = start; v <= end; v++) verses.push({ n: v, text: ch[v - 1] });
   const reference = `${b.name} ${chapter}:${start}${end > start ? "–" + end : ""}`;
