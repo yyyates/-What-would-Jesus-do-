@@ -83,23 +83,47 @@ async function askModel(question, history = []) {
       ],
     };
   }
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 4000,
-    system: SYSTEM,
-    output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
-    messages: [
-      ...history.flatMap((h) => [{ role: "user", content: h.q }, { role: "assistant", content: h.a }]),
-      { role: "user", content: question },
-    ],
-  });
+  const messages = [
+    ...history.flatMap((h) => [{ role: "user", content: h.q }, { role: "assistant", content: h.a }]),
+    { role: "user", content: question },
+  ];
+  let response;
+  try {
+    response = await client.messages.create({
+      model: MODEL, max_tokens: 4000, system: SYSTEM, messages,
+      output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
+    });
+  } catch (err) {
+    // If this model or account rejects structured output settings, retry once with plain JSON instructions.
+    if (!(err instanceof Anthropic.BadRequestError) || /credit|billing/i.test(err.message)) throw err;
+    console.error(JSON.stringify({ event: "retry_plain", message: err.message }));
+    response = await client.messages.create({
+      model: MODEL, max_tokens: 4000, messages,
+      system: SYSTEM + "\n\nReply with only a JSON object, no other text, matching: " +
+        '{"answer": string, "crisis": boolean, "verses": [{"book": string, "chapter": integer, "verse_start": integer, "verse_end": integer, "why": string}]}',
+    });
+  }
   const u = response.usage;
   console.log(JSON.stringify({ event: "answer", model: response.model, stop: response.stop_reason, in: u.input_tokens, out: u.output_tokens }));
   if (response.stop_reason === "refusal") throw Object.assign(new Error("refused"), { status: 422 });
   if (response.stop_reason === "max_tokens") throw new Error("answer was cut off");
   const text = response.content.filter((b) => b.type === "text").map((b) => b.text).join("");
-  return JSON.parse(text);
+  const json = text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
+  return JSON.parse(json);
 }
+
+// Explains in plain words why the AI call failed (never includes the key).
+function diagnose(err) {
+  const m = String(err?.message || "");
+  if (err instanceof Anthropic.AuthenticationError) return "The Anthropic API key was rejected. Re-copy it from console.anthropic.com > API Keys and paste it into Render > Environment > ANTHROPIC_API_KEY.";
+  if (err instanceof Anthropic.PermissionDeniedError) return "This API key isn't allowed to use this model or feature.";
+  if (/credit balance|billing/i.test(m)) return "The Anthropic account has no credit. Add credit at console.anthropic.com > Billing.";
+  if (err instanceof Anthropic.NotFoundError) return `The model "${MODEL}" wasn't found for this account. Try setting MODEL to claude-sonnet-5-5 in Render > Environment.`;
+  if (err instanceof Anthropic.RateLimitError) return "Rate limit or spend limit reached. Check console.anthropic.com > Settings > Limits.";
+  if (err instanceof Anthropic.APIConnectionError) return "The server couldn't reach Anthropic. Usually temporary.";
+  return m.slice(0, 300);
+}
+let lastCheck = 0;
 
 // Usage meters. In memory: fine for one server instance; they reset on restart.
 // For multiple instances or paid accounts, move these to a database (e.g. Redis or Postgres).
@@ -130,7 +154,18 @@ app.use(express.json({ limit: "20kb" }));
 app.use(cookieParser());
 app.use(express.static(__dirname + "/public", { extensions: ["html"], maxAge: "1h" }));
 
-app.get("/healthz", (_req, res) => res.json({ ok: true, mode: MOCK ? "demo" : "live" }));
+app.get("/healthz", async (req, res) => {
+  if (req.query.check === undefined || MOCK) return res.json({ ok: true, mode: MOCK ? "demo" : "live", model: MODEL });
+  // /healthz?check runs one tiny real request so you can see exactly what's wrong (at most once a minute).
+  if (Date.now() - lastCheck < 60_000) return res.json({ ok: null, note: "Checked less than a minute ago. Try again shortly." });
+  lastCheck = Date.now();
+  try {
+    await askModel("Give one short sentence of encouragement.");
+    res.json({ ok: true, mode: "live", model: MODEL, result: "Real answers are working." });
+  } catch (err) {
+    res.json({ ok: false, mode: "live", model: MODEL, status: err?.status ?? null, problem: diagnose(err) });
+  }
+});
 app.get("/api/config", (_req, res) => res.json({ siteName: SITE_NAME, donateUrl: DONATE_URL, freePerDay: FREE_PER_DAY, demo: MOCK, premium: premium.ENABLED }));
 premium.routes(app);
 
@@ -179,7 +214,7 @@ app.post("/api/ask", async (req, res) => {
   } catch (err) {
     perVisitor.set(meterKey, used); // don't charge the visitor for our failure
     if (!customer) siteCount--;
-    console.error(JSON.stringify({ event: "error", type: err?.constructor?.name, status: err?.status, message: err?.message }));
+    console.error(JSON.stringify({ event: "error", type: err?.constructor?.name, status: err?.status, problem: diagnose(err) }));
     const busy = err instanceof Anthropic.RateLimitError || err instanceof Anthropic.InternalServerError || err instanceof Anthropic.APIConnectionError;
     const msg = err?.status === 422
       ? "I'm not able to answer that one. Please try asking in a different way."
