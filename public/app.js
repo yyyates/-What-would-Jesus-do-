@@ -45,7 +45,12 @@ function showHistory() {
 function render(d, question) {
   out.replaceChildren();
   if (d.crisis) out.append(el("div", "crisis", "You matter, and you don't have to face this alone. If you might hurt yourself or are in danger, please call or text 988 (US), call your local emergency number, or reach out to someone you trust right now."));
-  out.append(el("div", "answer", d.answer));
+  const card = el("div", "answer-card");
+  const head = el("div", "ahead");
+  const av = el("img"); av.src = "/jesus.svg"; av.alt = "";
+  head.append(av, el("span", null, "What Jesus taught"));
+  card.append(head, el("div", "answer", d.answer));
+  out.append(card);
   for (const v of d.verses) {
     const box = el("div", "verse");
     box.append(el("div", "ref", v.reference + " (" + d.translation + ")"), el("p", "vt", v.text), el("div", "why", v.why));
@@ -75,6 +80,7 @@ function render(d, question) {
 f.onsubmit = async e => {
   e.preventDefault();
   b.disabled = true;
+  document.body.classList.add("thinking");
   const question = q.value.trim();
   out.replaceChildren(el("p", "dots", "Searching the Scriptures"));
   try {
@@ -98,5 +104,6 @@ f.onsubmit = async e => {
     out.replaceChildren(el("p", "err", "Couldn't reach the server. Please check your connection and try again."));
   } finally {
     b.disabled = false;
+    document.body.classList.remove("thinking");
   }
 };

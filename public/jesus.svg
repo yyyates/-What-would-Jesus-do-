@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="A friendly illustrated Jesus smiling with open arms">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#ffd978" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffd978" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="robe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#efe6d6"/>
+    </linearGradient>
+    <linearGradient id="sash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8553d"/><stop offset="1" stop-color="#a63f2c"/>
+    </linearGradient>
+  </defs>
+  <!-- glow behind the head -->
+  <circle cx="100" cy="78" r="78" fill="url(#glow)"/>
+  <circle cx="100" cy="74" r="56" fill="none" stroke="#f4c55a" stroke-width="3" opacity=".7"/>
+  <!-- robe / body -->
+  <path d="M46 220 C48 170 66 140 100 136 C134 140 152 170 154 220 Z" fill="url(#robe)" stroke="#dccdb4" stroke-width="2.5"/>
+  <!-- open arms (outline, then sleeve) -->
+  <path d="M64 160 C44 158 30 148 24 134" fill="none" stroke="#dccdb4" stroke-width="22" stroke-linecap="round"/>
+  <path d="M136 160 C156 158 170 148 176 134" fill="none" stroke="#dccdb4" stroke-width="22" stroke-linecap="round"/>
+  <path d="M64 160 C44 158 30 148 24 134" fill="none" stroke="#fbf6ec" stroke-width="18" stroke-linecap="round"/>
+  <path d="M136 160 C156 158 170 148 176 134" fill="none" stroke="#fbf6ec" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="22" cy="126" r="10" fill="#f2c7a1" stroke="#e3ad85" stroke-width="1.5"/>
+  <circle cx="178" cy="126" r="10" fill="#f2c7a1" stroke="#e3ad85" stroke-width="1.5"/>
+  <!-- sash over the shoulder -->
+  <path d="M74 146 C96 170 118 196 128 220 L110 220 C102 198 86 174 66 154 Z" fill="url(#sash)"/>
+  <!-- neckline -->
+  <path d="M88 138 Q100 152 112 138" fill="none" stroke="#e2d6c2" stroke-width="2"/>
+  <!-- hair back -->
+  <path d="M56 82 C52 44 74 26 100 26 C126 26 148 44 144 82 C146 104 142 126 132 140 L68 140 C58 126 54 104 56 82 Z" fill="#6b4226"/>
+  <!-- face -->
+  <ellipse cx="100" cy="84" rx="36" ry="40" fill="#f6d2b0"/>
+  <!-- ears -->
+  <ellipse cx="64" cy="88" rx="5" ry="8" fill="#efc29c"/>
+  <ellipse cx="136" cy="88" rx="5" ry="8" fill="#efc29c"/>
+  <!-- hair front, parted in the middle -->
+  <path d="M64 80 C62 52 80 38 100 40 C96 52 84 62 66 70 Z" fill="#7a4c2c"/>
+  <path d="M136 80 C138 52 120 38 100 40 C104 52 116 62 134 70 Z" fill="#7a4c2c"/>
+  <path d="M60 78 C58 104 62 124 72 138 L64 140 C54 122 52 100 56 80 Z" fill="#6b4226"/>
+  <path d="M140 78 C142 104 138 124 128 138 L136 140 C146 122 148 100 144 80 Z" fill="#6b4226"/>
+  <!-- beard -->
+  <path d="M66 92 C68 120 84 134 100 134 C116 134 132 120 134 92 C128 104 120 110 112 110 C106 106 94 106 88 110 C80 110 72 104 66 92 Z" fill="#7a4c2c"/>
+  <!-- mouth: gentle smile -->
+  <path d="M90 113 Q100 122 110 113" fill="#fff6ef" stroke="#5a3520" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- eyes: kind, closed happy arcs -->
+  <path d="M80 86 Q86 80 92 86" fill="none" stroke="#3d2616" stroke-width="3" stroke-linecap="round"/>
+  <path d="M108 86 Q114 80 120 86" fill="none" stroke="#3d2616" stroke-width="3" stroke-linecap="round"/>
+  <!-- brows -->
+  <path d="M79 76 Q86 72 93 75" fill="none" stroke="#6b4226" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M107 75 Q114 72 121 76" fill="none" stroke="#6b4226" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- rosy cheeks -->
+  <ellipse cx="76" cy="98" rx="7" ry="4.5" fill="#f19c8c" opacity=".55"/>
+  <ellipse cx="124" cy="98" rx="7" ry="4.5" fill="#f19c8c" opacity=".55"/>
+  <!-- nose -->
+  <path d="M100 90 Q97 99 101 101" fill="none" stroke="#d9a47f" stroke-width="2" stroke-linecap="round"/>
+</svg>
