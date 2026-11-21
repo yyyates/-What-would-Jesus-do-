@@ -1,0 +1,20 @@
+# One-click deploy on Render (render.com): New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: scripture-guide
+    runtime: node
+    plan: free             # $0 to start; sleeps when idle (first visit takes ~30s). Change to "starter" (~$7/mo) to stay always on.
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false        # Render asks you to paste it privately; it is never stored in the repo
+      - key: MODEL
+        value: claude-haiku-5-5
+      - key: FREE_PER_DAY
+        value: "3"
+      - key: DAILY_QUESTION_CAP
+        value: "2000"
+      - key: DONATE_URL
+        sync: false
