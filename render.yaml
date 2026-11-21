@@ -1,7 +1,7 @@
 # One-click deploy on Render (render.com): New > Blueprint > pick this repo.
 services:
   - type: web
-    name: scripture-guide
+    name: what-would-jesus-do
     runtime: node
     plan: free             # $0 to start; sleeps when idle (first visit takes ~30s). Change to "starter" (~$7/mo) to stay always on.
     buildCommand: npm ci --omit=dev

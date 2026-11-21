@@ -1,5 +1,5 @@
 {
-  "name": "scripture-guide",
+  "name": "what-would-jesus-do",
   "version": "1.0.0",
   "description": "Life guidance from the teachings of Jesus, with exact KJV verses",
   "main": "server.js",

@@ -1,4 +1,4 @@
-# Scripture Guide (prototype)
+# What Would Jesus Do
 
 Ask any life question and get warm guidance grounded in the teachings of Jesus, with 2 to 4 Bible verses quoted word for word from the King James Version.
 
@@ -36,7 +36,7 @@ Your key is like a password. Never paste it into chat, email, or code, and never
 | `FREE_PER_DAY` | `3` | Free questions per visitor per day. |
 | `DAILY_QUESTION_CAP` | `2000` | Whole-site daily limit, protects your bill. |
 | `DONATE_URL` | none | If set, shows a "help keep it going" link (Stripe Payment Link, Buy Me a Coffee, etc.). |
-| `SITE_NAME` | `Scripture Guide` | Used in server logs and config. |
+| `SITE_NAME` | `What Would Jesus Do` | Used in server logs and config. |
 
 ## Production features
 
@@ -78,7 +78,7 @@ About 1K input + 500 to 800 output tokens. Estimates, measure with real traffic:
 
 **Anywhere with Docker** (Fly.io, Railway, a VPS): a `Dockerfile` is included. Set the same environment variables in that host's secrets settings.
 
-**Before launch:** fill in the `[DATE]` and `[YOUR EMAIL]` placeholders in `public/privacy.html` and `public/terms.html` and have them reviewed, set the Console spend limit, and ask a pastor or two to try tricky questions.
+**Before launch:** have the privacy and terms pages reviewed, set the Console spend limit, and ask a pastor or two to try tricky questions.
 
 ## Files
 
