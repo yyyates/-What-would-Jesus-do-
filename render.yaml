@@ -18,3 +18,12 @@ services:
         value: "2000"
       - key: DONATE_URL
         sync: false
+      # Premium (optional until you set up Stripe; see README "Set up Premium with Stripe")
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PRICE_MONTHLY
+        sync: false
+      - key: STRIPE_PRICE_YEARLY
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true   # Render creates a random secret for signing Premium codes

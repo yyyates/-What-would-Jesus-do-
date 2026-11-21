@@ -5,12 +5,15 @@ const express = require("express");
 const helmet = require("helmet");
 const { rateLimit } = require("express-rate-limit");
 const Anthropic = require("@anthropic-ai/sdk");
+const cookieParser = require("cookie-parser");
 const { lookup } = require("./bible");
+const premium = require("./premium");
 
 const PORT = Number(process.env.PORT || 3000);
 const MODEL = process.env.MODEL || "claude-haiku-5-5"; // cheapest; set MODEL=claude-sonnet-5-5 for richer answers
 const FREE_PER_DAY = Number(process.env.FREE_PER_DAY || 3); // questions per visitor per day
 const DAILY_CAP = Number(process.env.DAILY_QUESTION_CAP || 2000); // whole-site safety cap on spend
+const PREMIUM_PER_DAY = Number(process.env.PREMIUM_PER_DAY || 100); // fair-use limit for Premium
 const DONATE_URL = process.env.DONATE_URL || "";
 const SITE_NAME = process.env.SITE_NAME || "What Would Jesus Do";
 const MOCK = !process.env.ANTHROPIC_API_KEY || process.env.MOCK === "1";
@@ -26,6 +29,7 @@ Voice and framing:
 - Do not condemn or shame. Be honest when Scripture challenges the person, but always with grace.
 - Keep it to 120 to 220 words, in 2 to 4 short paragraphs of plain text (no markdown, no headings, no bullet lists).
 - End with one short practical step or a brief prayer they could pray.
+- If there are earlier messages in the conversation, the newest one is a follow-up: build on what you already said instead of starting over.
 
 Citations:
 - Return 2 to 4 Bible references that directly support your guidance. Only cite verses you are certain exist and say what you claim. Use the standard Protestant book names (e.g. "Psalms", "1 Corinthians", "Song of Solomon").
@@ -65,7 +69,7 @@ const SCHEMA = {
 
 const CRISIS_RE = /\b(suicid\w*|kill (myself|me)|end (it all|my life)|self[- ]?harm|cut(ting)? myself|want to die|don'?t want to live)\b/i;
 
-async function askModel(question) {
+async function askModel(question, history = []) {
   if (MOCK) {
     return {
       answer:
@@ -84,7 +88,10 @@ async function askModel(question) {
     max_tokens: 4000,
     system: SYSTEM,
     output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
-    messages: [{ role: "user", content: question }],
+    messages: [
+      ...history.flatMap((h) => [{ role: "user", content: h.q }, { role: "assistant", content: h.a }]),
+      { role: "user", content: question },
+    ],
   });
   const u = response.usage;
   console.log(JSON.stringify({ event: "answer", model: response.model, stop: response.stop_reason, in: u.input_tokens, out: u.output_tokens }));
@@ -119,11 +126,13 @@ app.use(helmet({
     },
   },
 }));
-app.use(express.json({ limit: "10kb" }));
+app.use(express.json({ limit: "20kb" }));
+app.use(cookieParser());
 app.use(express.static(__dirname + "/public", { extensions: ["html"], maxAge: "1h" }));
 
 app.get("/healthz", (_req, res) => res.json({ ok: true, mode: MOCK ? "demo" : "live" }));
-app.get("/api/config", (_req, res) => res.json({ siteName: SITE_NAME, donateUrl: DONATE_URL, freePerDay: FREE_PER_DAY, demo: MOCK }));
+app.get("/api/config", (_req, res) => res.json({ siteName: SITE_NAME, donateUrl: DONATE_URL, freePerDay: FREE_PER_DAY, demo: MOCK, premium: premium.ENABLED }));
+premium.routes(app);
 
 // Burst protection against scripts hammering the API.
 app.use("/api/ask", rateLimit({ windowMs: 60_000, limit: 6, standardHeaders: "draft-8", legacyHeaders: false,
@@ -135,18 +144,28 @@ app.post("/api/ask", async (req, res) => {
   if (question.length > 1500) return res.status(400).json({ error: "Please keep your question under 1,500 characters." });
 
   rollDay();
-  const used = perVisitor.get(req.ip) || 0;
-  if (used >= FREE_PER_DAY) {
-    return res.status(429).json({ error: `You've used your ${FREE_PER_DAY} free questions for today. Come back tomorrow for more.`, limit: true, donateUrl: DONATE_URL });
+  const customer = await premium.premiumCustomer(req);
+  const meterKey = customer || req.ip;
+  const allowance = customer ? PREMIUM_PER_DAY : FREE_PER_DAY;
+  const used = perVisitor.get(meterKey) || 0;
+  if (used >= allowance) {
+    return res.status(429).json(customer
+      ? { error: "You've asked a lot today! Please come back tomorrow." }
+      : { error: `You've used your ${FREE_PER_DAY} free questions for today. Go Premium for unlimited questions, or come back tomorrow.`, limit: true, premium: premium.ENABLED, donateUrl: DONATE_URL });
   }
-  if (siteCount >= DAILY_CAP) {
-    return res.status(503).json({ error: "We've reached today's limit for questions. Please come back tomorrow." });
+  if (!customer && siteCount >= DAILY_CAP) {
+    return res.status(503).json({ error: "We've reached today's limit for free questions. Please come back tomorrow.", limit: true, premium: premium.ENABLED });
   }
-  perVisitor.set(req.ip, used + 1);
-  siteCount++;
+  // Follow-up questions keep the last few exchanges as context (Premium only).
+  const history = customer && Array.isArray(req.body?.history)
+    ? req.body.history.slice(-3).filter((h) => h && typeof h.q === "string" && typeof h.a === "string")
+        .map((h) => ({ q: h.q.slice(0, 1500), a: h.a.slice(0, 3000) }))
+    : [];
+  perVisitor.set(meterKey, used + 1);
+  if (!customer) siteCount++;
 
   try {
-    const out = await askModel(question);
+    const out = await askModel(question, history);
     const verses = [];
     const seen = new Set();
     for (const v of out.verses || []) {
@@ -156,10 +175,10 @@ app.post("/api/ask", async (req, res) => {
       verses.push({ reference: found.reference, text: found.text, why: v.why });
     }
     const crisis = Boolean(out.crisis) || CRISIS_RE.test(question);
-    res.json({ answer: out.answer, verses, crisis, translation: "KJV", remaining: FREE_PER_DAY - used - 1 });
+    res.json({ answer: out.answer, verses, crisis, translation: "KJV", premium: Boolean(customer), remaining: customer ? null : FREE_PER_DAY - used - 1 });
   } catch (err) {
-    perVisitor.set(req.ip, used); // don't charge the visitor for our failure
-    siteCount--;
+    perVisitor.set(meterKey, used); // don't charge the visitor for our failure
+    if (!customer) siteCount--;
     console.error(JSON.stringify({ event: "error", type: err?.constructor?.name, status: err?.status, message: err?.message }));
     const busy = err instanceof Anthropic.RateLimitError || err instanceof Anthropic.InternalServerError || err instanceof Anthropic.APIConnectionError;
     const msg = err?.status === 422

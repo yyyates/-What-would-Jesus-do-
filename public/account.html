@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premium · What Would Jesus Do</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css"></head>
+<body><main class="page">
+<p><a href="/">← What Would Jesus Do</a></p>
+<h1>Premium</h1>
+<p id="msg" hidden></p>
+
+<section id="join" hidden>
+  <p>Premium helps keep this site running, and gives you:</p>
+  <ul><li>Unlimited questions (free visitors get 3 a day)</li><li>Follow-up questions that build on your last answer</li><li>Your past questions and answers saved on this device</li></ul>
+  <div class="row start">
+    <button class="go" data-plan="monthly">$4.99 / month</button>
+    <button class="ghost" data-plan="yearly">$39 / year (save 35%)</button>
+  </div>
+  <p class="why">Secure checkout by Stripe. Cancel anytime.</p>
+</section>
+
+<section id="member" hidden>
+  <p class="ok"><strong>★ You're a Premium member on this device.</strong> Thank you for supporting this ministry.</p>
+  <h2>Your Premium code</h2>
+  <p>To use Premium on another phone or computer, open this page there and enter this code. Keep it private.</p>
+  <div class="code" id="code"></div>
+  <p><button class="ghost" id="copy" type="button">Copy code</button></p>
+  <h2>Manage subscription</h2>
+  <p>Change your card, switch plans, or cancel.</p>
+  <p><button class="go" id="portal" type="button">Manage subscription</button> <button class="ghost" id="signout" type="button">Sign out on this device</button></p>
+</section>
+
+<section id="restore" hidden>
+  <h2>Already Premium?</h2>
+  <p>Enter the Premium code from your other device (it's on that device's Premium page).</p>
+  <form id="rf"><input class="text" id="rc" placeholder="Paste your Premium code" autocomplete="off" required><button class="ghost">Restore Premium</button></form>
+</section>
+
+<section id="soon" hidden><p>Premium is coming soon.</p></section>
+</main>
+<script src="/account.js"></script>
+</body></html>

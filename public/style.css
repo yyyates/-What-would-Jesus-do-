@@ -29,3 +29,18 @@ footer{color:var(--muted);font-size:.8rem;margin-top:40px;border-top:1px solid v
 .donate a{color:var(--accent);font-weight:600}
 .page h2{font:600 1.2rem Lora,Georgia,serif;margin-top:28px}
 a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pill{border:1px solid var(--accent);color:var(--accent);border-radius:99px;padding:4px 12px;font-size:.85rem;font-weight:600;text-decoration:none;white-space:nowrap}
+.upsell{margin-top:24px;background:var(--card);border:1px solid var(--accent);border-radius:14px;padding:16px}
+.upsell p{margin:6px 0 12px;color:var(--muted)}
+.upsell .row{justify-content:flex-start}
+.h2{font:600 1.15rem Lora,Georgia,serif;margin:36px 0 8px}
+#histList{list-style:none;padding:0;margin:0}
+#histList li{border-top:1px solid var(--line);padding:10px 0;cursor:pointer;color:var(--ink)}
+#histList li small{color:var(--muted);display:block}
+.followup{margin-top:22px}
+.code{font-family:ui-monospace,Menlo,monospace;background:var(--soft);border-radius:8px;padding:10px;word-break:break-all;font-size:.85rem}
+input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);color:var(--ink);font:inherit;margin:8px 0}
+.ok{color:#2e7d4f}
+[hidden]{display:none!important}
+.row.start{justify-content:flex-start}

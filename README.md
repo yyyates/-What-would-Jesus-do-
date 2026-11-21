@@ -27,6 +27,18 @@ Your key is like a password. Never paste it into chat, email, or code, and never
 - **On Render:** when you create the service from `render.yaml`, Render asks for `ANTHROPIC_API_KEY` in its dashboard. Paste it there. It's stored encrypted and never appears in the code.
 - **Spend limit:** in the Anthropic Console go to **Settings > Limits** and set a monthly limit (e.g. $10). The app also has its own daily cap (`DAILY_QUESTION_CAP`, default 2,000 questions/day, about $1/day on Haiku).
 
+## Set up Premium with Stripe
+
+Premium ($4.99/month or $39/year) gives unlimited questions, follow-up questions and saved history. It stays hidden until these steps are done.
+
+1. Sign up at [stripe.com](https://stripe.com) and finish account activation (business details and bank account for payouts). An individual or sole proprietor is fine.
+2. In the Stripe Dashboard go to **Product catalog > Add product**. Name it "Premium". Add a **recurring** price of $4.99 **monthly**, then add a second price of $39 **yearly**. Copy each price's ID (starts with `price_`).
+3. Go to **Settings > Billing > Customer portal** and click **Activate** so members can cancel or change their card themselves.
+4. Go to **Developers > API keys** and copy the **Secret key** (starts with `sk_live_`; use `sk_test_` first to try it with Stripe's test card 4242 4242 4242 4242).
+5. In Render, open the service, go to **Environment**, and fill in `STRIPE_SECRET_KEY`, `STRIPE_PRICE_MONTHLY` and `STRIPE_PRICE_YEARLY`. Save. Render redeploys and the Premium button appears.
+
+How sign-in works without passwords: after paying, the member's browser gets a signed Premium code (shown on their Premium page). To use Premium on another device they paste that code. Stripe remains the record of who is paying, so cancelling ends Premium automatically. Stripe takes about 2.9% + 30¢ per payment.
+
 ## Settings (environment variables)
 
 | Variable | Default | What it does |
@@ -36,6 +48,10 @@ Your key is like a password. Never paste it into chat, email, or code, and never
 | `FREE_PER_DAY` | `3` | Free questions per visitor per day. |
 | `DAILY_QUESTION_CAP` | `2000` | Whole-site daily limit, protects your bill. |
 | `DONATE_URL` | none | If set, shows a "help keep it going" link (Stripe Payment Link, Buy Me a Coffee, etc.). |
+| `STRIPE_SECRET_KEY` | none | Stripe secret key. Premium is hidden without it. |
+| `STRIPE_PRICE_MONTHLY` / `STRIPE_PRICE_YEARLY` | none | Stripe price IDs for the two plans. |
+| `SESSION_SECRET` | none | Long random string for signing Premium codes (Render generates it). |
+| `PREMIUM_PER_DAY` | `100` | Fair-use daily limit for Premium members. |
 | `SITE_NAME` | `What Would Jesus Do` | Used in server logs and config. |
 
 ## Production features
@@ -61,7 +77,7 @@ About 1K input + 500 to 800 output tokens. Estimates, measure with real traffic:
 
 ## Making money (sketch)
 
-- **Freemium:** 3 free questions a day (built in). Premium at about $4.99/month or $39/year: unlimited questions, saved history and journal, follow-up conversation, choice of translation.
+- **Freemium (built in):** 3 free questions a day. Premium at $4.99/month or $39/year: unlimited questions, follow-ups, saved history.
 - **Daily devotional email/push:** free list builder; a personalized version is a premium perk. The email list is the most valuable asset.
 - **Donations / "pay it forward":** a tip jar (Stripe Payment Links, Buy Me a Coffee) fits this audience well. "Sponsor 100 questions for someone who can't pay."
 - **Churches and ministries (B2B):** a white-label widget for church websites at $20 to $50/month per church.
@@ -83,6 +99,7 @@ About 1K input + 500 to 800 output tokens. Estimates, measure with real traffic:
 ## Files
 
 - `server.js` — API (`POST /api/ask`), prompt, limits, security, demo mode
+- `premium.js` — Stripe checkout, Premium codes, subscription portal
 - `public/` — `index.html`, `app.js`, `style.css`, privacy, terms and 404 pages
 - `render.yaml`, `Dockerfile`, `.env.example` — deployment
 - `bible.js` — KJV lookup with book-name aliases ("Psalm", "1 Cor", "First John")

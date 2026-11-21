@@ -11,7 +11,7 @@
 </head>
 <body>
 <main>
-  <h1>What Would Jesus Do</h1>
+  <div class="top"><h1>What Would Jesus Do</h1><a class="pill" id="acct" href="/account">Premium</a></div>
   <p class="sub">Bring any question you're carrying. Receive guidance from the teachings of Jesus, with the verses behind it.</p>
   <form id="f">
     <textarea id="q" maxlength="1500" placeholder="e.g. How do I forgive someone who hurt me and never apologized?" required></textarea>
@@ -25,6 +25,12 @@
     </div>
   </form>
   <div id="out" aria-live="polite"></div>
+  <div class="upsell" id="upsell" hidden>
+    <strong>Go deeper with Premium</strong>
+    <p>Unlimited questions, follow-up questions, and your past answers saved.</p>
+    <div class="row"><button class="go" data-plan="monthly">$4.99 / month</button><button class="ghost" data-plan="yearly">$39 / year (save 35%)</button></div>
+  </div>
+  <section id="hist" hidden><h2 class="h2">Your recent questions</h2><ul id="histList"></ul></section>
   <div class="donate" id="donate">This site is free and runs on gifts. If it has blessed you, <a id="donateLink" href="#" target="_blank" rel="noopener">help keep it going</a>.</div>
   <footer>Guidance is drawn from the teachings of Jesus and the Bible, written by AI. It is not the voice of Jesus or God, and it is not a substitute for your pastor, church community, or professional medical, legal or mental-health help. Verses are quoted from the King James Version (public domain). If you are in crisis in the US, call or text 988.
     <div class="nav"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div></footer>
