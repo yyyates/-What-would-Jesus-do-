@@ -16,8 +16,8 @@ const DAILY_CAP = Number(process.env.DAILY_QUESTION_CAP || 2000); // whole-site 
 const PREMIUM_PER_DAY = Number(process.env.PREMIUM_PER_DAY || 100); // fair-use limit for Premium
 const DONATE_URL = process.env.DONATE_URL || "";
 const SITE_NAME = process.env.SITE_NAME || "What Would Jesus Do";
-const MOCK = !process.env.ANTHROPIC_API_KEY || process.env.MOCK === "1";
-const client = MOCK ? null : new Anthropic({ timeout: 45_000, maxRetries: 2 });
+const MOCK = !process.env.ANTHROPIC_API_KEY?.trim() || process.env.MOCK === "1";
+const client = MOCK ? null : new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY.trim(), timeout: 45_000, maxRetries: 2 });
 
 const SYSTEM = `You help people reflect on life questions through the teachings of Jesus as recorded in the Bible.
 
