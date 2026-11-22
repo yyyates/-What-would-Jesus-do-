@@ -48,6 +48,14 @@ input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10
 .brand{font:600 1rem Lora,Georgia,serif;color:var(--accent)}
 .hero{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 0 14px}
 .buddy{width:170px;height:auto;flex:none;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 8px 12px rgba(120,80,30,.18))}
+.buddies{position:relative;flex:none;padding:0 18px 6px}
+.buddies .buddy{display:block}
+.pal{position:absolute;height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(120,80,30,.18))}
+.pal.lamb{width:68px;right:-10px;bottom:0;animation:hop 2.6s ease-in-out infinite}
+.pal.dove{width:58px;left:-6px;top:6px;transform:scaleX(-1);animation:flutter 3.4s ease-in-out infinite}
+@keyframes hop{0%,70%,100%{transform:translateY(0)}80%{transform:translateY(-7px)}90%{transform:translateY(0)}}
+@keyframes flutter{0%,100%{transform:scaleX(-1) translate(0,0) rotate(0)}50%{transform:scaleX(-1) translate(4px,-8px) rotate(-6deg)}}
+.thinking .pal.lamb{animation-duration:1s}
 .bubble{position:relative;background:var(--bubble);border-radius:18px;padding:14px 16px;max-width:240px;box-shadow:var(--shadow)}
 .bubble::before{content:"";position:absolute;left:-10px;top:42%;border:10px solid transparent;border-right-color:var(--bubble);border-left:0}
 .bq{font:italic 1rem/1.5 Lora,Georgia,serif;margin:0}
@@ -55,13 +63,13 @@ input.text{width:100%;border:1px solid var(--line);border-radius:10px;padding:10
 .thinking .buddy{animation:bob .9s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
-@media (prefers-reduced-motion:reduce){.buddy,.thinking .buddy{animation:none}}
+@media (prefers-reduced-motion:reduce){.buddy,.thinking .buddy,.pal,.thinking .pal.lamb{animation:none}}
 .answer-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 8px;box-shadow:var(--shadow)}
 .ahead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .ahead img{width:44px;height:44px;border-radius:50%;background:var(--soft);object-fit:cover;object-position:50% 18%}
 .ahead span{font:600 1rem Lora,Georgia,serif;color:var(--accent)}
 .verse{border:1px solid var(--line);border-left:4px solid var(--accent)}
-@media (max-width:460px){.buddy{width:130px}.bubble{max-width:none;padding:12px 14px}.bq{font-size:.92rem}h1{font-size:1.6rem}}
+@media (max-width:460px){.buddy{width:130px}.buddies{padding:0 12px 4px}.pal.lamb{width:52px;right:-6px}.pal.dove{width:44px;left:-4px}.bubble{max-width:none;padding:12px 14px}.bq{font-size:.92rem}h1{font-size:1.6rem}}
 .aifoot{color:var(--muted);font-size:.75rem;margin:10px 0 6px}
 .btns{display:flex;gap:8px;margin-left:auto}
 #out{margin:0 0 16px}
