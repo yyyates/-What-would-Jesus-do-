@@ -9,12 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="/jesus.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="theme-color" content="#8a5a2b">
 <meta property="og:title" content="What Would Jesus Do">
 <meta property="og:description" content="Ask any life question and see what Jesus taught about it, with Bible verses.">
 </head>
 <body>
 <main>
-  <div class="topbar"><span class="brand">✝ What Would Jesus Do</span><a class="pill" id="acct" href="/account">Premium</a></div>
+  <div class="topbar"><span class="brand">✝ What Would Jesus Do</span><span class="btns"><a class="pill" id="remind" href="/reminders" hidden>🔔 Reminders</a><a class="pill" id="acct" href="/account">Premium</a></span></div>
   <section class="hero">
     <img class="buddy" id="buddy" src="/jesus.svg" alt="A friendly illustrated Jesus smiling with open arms" width="200" height="220">
     <div class="bubble">
@@ -36,6 +39,10 @@
       <div class="btns"><button class="ghost" id="newchat" type="button" hidden>New chat</button><button class="go" id="b">Send</button></div>
     </div>
   </form>
+  <div class="invite" id="invite" hidden>
+    <p><strong>Want me to check in on you?</strong> A gentle reminder that I'm always in your heart, by notification or email.</p>
+    <span class="btns"><a class="pill" href="/reminders">Yes, remind me</a><button class="ghost" id="inviteNo" type="button">Not now</button></span>
+  </div>
   <div class="upsell" id="upsell" hidden>
     <strong>Go deeper with Premium</strong>
     <p>Unlimited messages, and your conversations saved.</p>

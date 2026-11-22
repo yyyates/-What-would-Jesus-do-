@@ -4,7 +4,8 @@
   "description": "Life guidance from the teachings of Jesus, with exact KJV verses",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "vapid-keys": "web-push generate-vapid-keys"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +16,8 @@
     "express": "^5.3.0",
     "express-rate-limit": "^8.7.5",
     "helmet": "^8.3.0",
-    "stripe": "^23.2.0"
+    "stripe": "^23.2.0",
+    "web-push": "^3.6.7"
   },
   "engines": {
     "node": ">=20"

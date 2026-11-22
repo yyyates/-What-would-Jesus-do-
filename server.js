@@ -8,6 +8,7 @@ const Anthropic = require("@anthropic-ai/sdk");
 const cookieParser = require("cookie-parser");
 const { lookup } = require("./bible");
 const premium = require("./premium");
+const reminders = require("./reminders");
 
 const PORT = Number(process.env.PORT || 3000);
 const MODEL = process.env.MODEL || "claude-haiku-5-5"; // cheapest; set MODEL=claude-sonnet-5-5 for richer answers
@@ -180,8 +181,9 @@ app.get("/healthz", async (req, res) => {
     res.json({ ok: false, mode: "live", model: MODEL, status: err?.status ?? null, problem: diagnose(err) });
   }
 });
-app.get("/api/config", (_req, res) => res.json({ siteName: SITE_NAME, donateUrl: DONATE_URL, freePerDay: FREE_PER_DAY, demo: MOCK, premium: premium.ENABLED }));
+app.get("/api/config", (_req, res) => res.json({ siteName: SITE_NAME, donateUrl: DONATE_URL, freePerDay: FREE_PER_DAY, demo: MOCK, premium: premium.ENABLED, reminders: reminders.PUSH || reminders.EMAIL }));
 premium.routes(app);
+reminders.routes(app);
 
 // Burst protection against scripts hammering the API.
 app.use("/api/ask", rateLimit({ windowMs: 60_000, limit: 6, standardHeaders: "draft-8", legacyHeaders: false,

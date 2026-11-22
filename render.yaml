@@ -27,3 +27,22 @@ services:
         sync: false
       - key: SESSION_SECRET
         generateValue: true   # Render creates a random secret for signing Premium codes
+      # Check-in reminders (optional; see README "Set up check-in reminders")
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - key: PUBLIC_URL
+        sync: false

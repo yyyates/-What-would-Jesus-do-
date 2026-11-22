@@ -39,6 +39,17 @@ Premium ($4.99/month or $39/year) gives unlimited questions, follow-up questions
 
 How sign-in works without passwords: after paying, the member's browser gets a signed Premium code (shown on their Premium page). To use Premium on another device they paste that code. Stripe remains the record of who is paying, so cancelling ends Premium automatically. Stripe takes about 2.9% + 30¢ per payment.
 
+## Set up check-in reminders
+
+Visitors can opt in (on the new **Reminders** page, or from a gentle invite after their first answer) to a short, warm check-in from Jesus with a KJV verse, by **push notification**, **email**, or both. They pick daily or Sundays, and the time in their own time zone. Nothing is sent unless they ask; email uses double opt-in (a confirm link) and every email has a one-click unsubscribe. Messages are pre-written in `messages.js` (31 that rotate daily), so reminders cost nothing in AI usage. Each part stays hidden until its keys are set.
+
+1. **Storage (free):** sign up at [upstash.com](https://upstash.com), create a Redis database, and copy the **REST URL** and **REST token** into `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`. (Render's free disk is wiped on every restart, so this is where subscribers are kept.)
+2. **Push notifications (free):** run `npm run vapid-keys` once on your computer. Paste the public key into `VAPID_PUBLIC_KEY`, the private key into `VAPID_PRIVATE_KEY`, and set `VAPID_SUBJECT` to `mailto:` plus your email. Works on Android, Windows, Mac and Linux browsers; on iPhone the visitor first adds the site to their home screen (the page explains how).
+3. **Email (free up to 3,000/month):** sign up at [resend.com](https://resend.com), add and verify your domain (a few DNS records), create an API key, and set `RESEND_API_KEY` and `EMAIL_FROM` (e.g. `What Would Jesus Do <hello@yourdomain.com>`). Set `PUBLIC_URL` to your site's address so email links point to it.
+4. **The hourly sender:** set `CRON_SECRET` on the server to any long random string. In GitHub go to **Settings > Secrets and variables > Actions** and add `CRON_SECRET` (same value) and `SITE_URL` (your site's address). The workflow in `.github/workflows/reminders.yml` then runs every hour; you can also run it by hand from the **Actions** tab. (GitHub pauses scheduled workflows after 60 days with no commits; re-enable it from the Actions tab if that happens.)
+
+To test: turn on notifications at `/reminders` and you should get a welcome notification right away.
+
 ## Settings (environment variables)
 
 | Variable | Default | What it does |
@@ -52,6 +63,11 @@ How sign-in works without passwords: after paying, the member's browser gets a s
 | `STRIPE_PRICE_MONTHLY` / `STRIPE_PRICE_YEARLY` | none | Stripe price IDs for the two plans. |
 | `SESSION_SECRET` | none | Long random string for signing Premium codes (Render generates it). |
 | `PREMIUM_PER_DAY` | `100` | Fair-use daily limit for Premium members. |
+| `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` / `VAPID_SUBJECT` | none | Push notification keys (`npm run vapid-keys`). |
+| `RESEND_API_KEY` / `EMAIL_FROM` | none | Email reminders via Resend. |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | none | Where reminder subscribers are stored. Without them, a local file is used. |
+| `CRON_SECRET` | none | Lets the hourly scheduler trigger reminders. |
+| `PUBLIC_URL` | none | Your site address, used in email links. |
 | `SITE_NAME` | `What Would Jesus Do` | Used in server logs and config. |
 
 ## Production features
@@ -100,6 +116,7 @@ About 1K input + 500 to 800 output tokens. Estimates, measure with real traffic:
 
 - `server.js` — API (`POST /api/ask`), prompt, limits, security, demo mode
 - `premium.js` — Stripe checkout, Premium codes, subscription portal
+- `reminders.js`, `messages.js`, `public/reminders.*`, `public/sw.js` — opt-in check-in reminders (push and email)
 - `public/` — `index.html`, `app.js`, `style.css`, privacy, terms and 404 pages
 - `render.yaml`, `Dockerfile`, `.env.example` — deployment
 - `bible.js` — KJV lookup with book-name aliases ("Psalm", "1 Cor", "First John")
