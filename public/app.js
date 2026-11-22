@@ -8,8 +8,13 @@ let me = { premium: false, available: false };
 let thread = [];      // [{q, a}] sent as context for follow-ups
 let turns = [];       // [{question, data}] for display and saving
 let chatId = null;
+let remindersOn = false;
+const invite = document.getElementById("invite");
+document.getElementById("inviteNo").onclick = () => { invite.hidden = true; store.set("wwjd_invite_seen", true); };
 
 fetch("/api/config").then(r => r.json()).then(cfg => {
+  remindersOn = Boolean(cfg.reminders);
+  if (remindersOn) document.getElementById("remind").hidden = false;
   if (cfg.donateUrl) { document.getElementById("donateLink").href = cfg.donateUrl; document.getElementById("donate").style.display = "block"; }
 }).catch(() => {});
 fetch("/api/me").then(r => r.json()).then(m => {
@@ -36,7 +41,7 @@ newChat.onclick = () => reset();
 
 function reset() {
   thread = []; turns = []; chatId = null;
-  out.replaceChildren(); upsell.hidden = true; newChat.hidden = true;
+  out.replaceChildren(); upsell.hidden = true; invite.hidden = true; newChat.hidden = true;
   document.body.classList.remove("chatting");
   q.placeholder = "Ask Jesus anything…"; q.value = ""; q.focus();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -118,6 +123,8 @@ f.onsubmit = async e => {
     turns.push({ question, data: d });
     q.placeholder = "Reply…";
     upsell.hidden = d.premium || !me.available || d.remaining > 0;
+    // After their first answer, offer check-ins once (never again after "Not now" or signing up).
+    if (remindersOn && upsell.hidden && !store.get("wwjd_invite_seen", false) && !store.get("wwjd_reminder_token", null)) { invite.hidden = false; store.set("wwjd_invite_seen", true); }
     if (d.premium) {
       const chats = store.get("wwjd_chats", []).filter(c => c.id !== chatId);
       chatId = chatId || String(Date.now());
