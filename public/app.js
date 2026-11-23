@@ -17,7 +17,7 @@ fetch("/api/me").then(r => r.json()).then(m => {
   const a = document.getElementById("acct");
   if (!m.available && !m.premium) a.hidden = true;
   if (m.premium) { a.textContent = "★ Premium"; showHistory(); }
-  upsell.querySelectorAll("[data-plan]").forEach(btn => { if (!m.plans?.[btn.dataset.plan]) btn.hidden = true; });
+  upsell.querySelectorAll("[data-plan]").forEach(btn => { const p = m.plans?.[btn.dataset.plan]; if (!p) btn.hidden = true; else if (p.label) btn.textContent = p.label; });
 }).catch(() => {});
 
 upsell.querySelectorAll("[data-plan]").forEach(btn => btn.onclick = () => checkout(btn.dataset.plan, btn));

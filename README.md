@@ -36,6 +36,9 @@ Premium ($4.99/month or $39/year) gives unlimited questions, follow-up questions
 3. Go to **Settings > Billing > Customer portal** and click **Activate** so members can cancel or change their card themselves.
 4. Go to **Developers > API keys** and copy the **Secret key** (starts with `sk_live_`; use `sk_test_` first to try it with Stripe's test card 4242 4242 4242 4242).
 5. In Render, open the service, go to **Environment**, and fill in `STRIPE_SECRET_KEY`, `STRIPE_PRICE_MONTHLY` and `STRIPE_PRICE_YEARLY`. Save. Render redeploys and the Premium button appears.
+6. Open `https://<your-site>/api/premium/check`. It says whether the key works, shows each plan's price as Stripe will charge it, and whether the customer portal is on. It never shows your keys.
+
+Test mode first: a `sk_test_` key needs **test-mode** price IDs (create the product while the Dashboard's "Test mode" toggle is on). The Premium page then shows a yellow "Test mode" note with the 4242 test card. When it works, switch the Dashboard to live, create the product again, and replace all three values with the live key and live price IDs. The plan buttons always show the real Stripe prices, so you can pick any price you like.
 
 How sign-in works without passwords: after paying, the member's browser gets a signed Premium code (shown on their Premium page). To use Premium on another device they paste that code. Stripe remains the record of who is paying, so cancelling ends Premium automatically. Stripe takes about 2.9% + 30¢ per payment.
 
