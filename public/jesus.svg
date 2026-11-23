@@ -1,58 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="A friendly illustrated Jesus smiling with open arms">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="A friendly illustrated Jesus smiling and waving">
   <defs>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/>
-      <stop offset=".6" stop-color="#ffd978" stop-opacity=".45"/>
+      <stop offset="0" stop-color="#fff0c4" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#ffe08f" stop-opacity=".45"/>
       <stop offset="1" stop-color="#ffd978" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="robe" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#efe6d6"/>
+      <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1e8d9"/>
     </linearGradient>
     <linearGradient id="sash" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#c8553d"/><stop offset="1" stop-color="#a63f2c"/>
+      <stop offset="0" stop-color="#d9644b"/><stop offset="1" stop-color="#b44a35"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7d4f2e"/><stop offset="1" stop-color="#5e3a22"/>
     </linearGradient>
   </defs>
-  <!-- glow behind the head -->
-  <circle cx="100" cy="78" r="78" fill="url(#glow)"/>
-  <circle cx="100" cy="74" r="56" fill="none" stroke="#f4c55a" stroke-width="3" opacity=".7"/>
-  <!-- robe / body -->
-  <path d="M46 220 C48 170 66 140 100 136 C134 140 152 170 154 220 Z" fill="url(#robe)" stroke="#dccdb4" stroke-width="2.5"/>
-  <!-- open arms (outline, then sleeve) -->
-  <path d="M64 160 C44 158 30 148 24 134" fill="none" stroke="#dccdb4" stroke-width="22" stroke-linecap="round"/>
-  <path d="M136 160 C156 158 170 148 176 134" fill="none" stroke="#dccdb4" stroke-width="22" stroke-linecap="round"/>
-  <path d="M64 160 C44 158 30 148 24 134" fill="none" stroke="#fbf6ec" stroke-width="18" stroke-linecap="round"/>
-  <path d="M136 160 C156 158 170 148 176 134" fill="none" stroke="#fbf6ec" stroke-width="18" stroke-linecap="round"/>
-  <circle cx="22" cy="126" r="10" fill="#f2c7a1" stroke="#e3ad85" stroke-width="1.5"/>
-  <circle cx="178" cy="126" r="10" fill="#f2c7a1" stroke="#e3ad85" stroke-width="1.5"/>
-  <!-- sash over the shoulder -->
-  <path d="M74 146 C96 170 118 196 128 220 L110 220 C102 198 86 174 66 154 Z" fill="url(#sash)"/>
-  <!-- neckline -->
-  <path d="M88 138 Q100 152 112 138" fill="none" stroke="#e2d6c2" stroke-width="2"/>
-  <!-- hair back -->
-  <path d="M56 82 C52 44 74 26 100 26 C126 26 148 44 144 82 C146 104 142 126 132 140 L68 140 C58 126 54 104 56 82 Z" fill="#6b4226"/>
-  <!-- face -->
-  <ellipse cx="100" cy="84" rx="36" ry="40" fill="#f6d2b0"/>
+  <!-- soft glow and halo -->
+  <circle cx="100" cy="84" r="84" fill="url(#glow)"/>
+  <circle cx="100" cy="80" r="66" fill="none" stroke="#f4c55a" stroke-width="3.5" opacity=".65"/>
+  <!-- little round body in a robe -->
+  <path d="M56 220 C56 184 74 160 100 158 C126 160 144 184 144 220 Z" fill="url(#robe)" stroke="#dccdb4" stroke-width="2.5"/>
+  <!-- waving arms -->
+  <path d="M72 178 C58 176 46 166 40 152" fill="none" stroke="#dccdb4" stroke-width="20" stroke-linecap="round"/>
+  <path d="M128 178 C142 176 154 166 160 152" fill="none" stroke="#dccdb4" stroke-width="20" stroke-linecap="round"/>
+  <path d="M72 178 C58 176 46 166 40 152" fill="none" stroke="#fbf6ec" stroke-width="16" stroke-linecap="round"/>
+  <path d="M128 178 C142 176 154 166 160 152" fill="none" stroke="#fbf6ec" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="38" cy="145" r="9.5" fill="#f6d2b0" stroke="#e8b48d" stroke-width="1.5"/>
+  <circle cx="162" cy="145" r="9.5" fill="#f6d2b0" stroke="#e8b48d" stroke-width="1.5"/>
+  <!-- sash -->
+  <path d="M80 164 C98 180 114 200 122 220 L106 220 C99 202 87 186 72 172 Z" fill="url(#sash)"/>
+  <!-- heart on the robe -->
+  <path d="M100 200 C93 194 89 190 89 186 C89 182 92 180 95 180 C97.5 180 99 181.5 100 183 C101 181.5 102.5 180 105 180 C108 180 111 182 111 186 C111 190 107 194 100 200 Z" fill="#f19c8c" opacity=".85"/>
+  <!-- hair back, falling to the shoulders -->
+  <path d="M42 90 C38 46 66 22 100 22 C134 22 162 46 158 90 C160 116 154 142 140 158 C128 150 116 146 112 146 L88 146 C84 146 72 150 60 158 C46 142 40 116 42 90 Z" fill="url(#hair)"/>
+  <!-- neck and collar -->
+  <path d="M89 128 L111 128 L112 162 L88 162 Z" fill="#f1c6a1"/>
+  <path d="M84 160 Q100 172 116 160" fill="none" stroke="#e2d6c2" stroke-width="2"/>
+  <!-- big round face -->
+  <ellipse cx="100" cy="94" rx="46" ry="44" fill="#f8d6b6"/>
   <!-- ears -->
-  <ellipse cx="64" cy="88" rx="5" ry="8" fill="#efc29c"/>
-  <ellipse cx="136" cy="88" rx="5" ry="8" fill="#efc29c"/>
-  <!-- hair front, parted in the middle -->
-  <path d="M64 80 C62 52 80 38 100 40 C96 52 84 62 66 70 Z" fill="#7a4c2c"/>
-  <path d="M136 80 C138 52 120 38 100 40 C104 52 116 62 134 70 Z" fill="#7a4c2c"/>
-  <path d="M60 78 C58 104 62 124 72 138 L64 140 C54 122 52 100 56 80 Z" fill="#6b4226"/>
-  <path d="M140 78 C142 104 138 124 128 138 L136 140 C146 122 148 100 144 80 Z" fill="#6b4226"/>
-  <!-- beard -->
-  <path d="M66 92 C68 120 84 134 100 134 C116 134 132 120 134 92 C128 104 120 110 112 110 C106 106 94 106 88 110 C80 110 72 104 66 92 Z" fill="#7a4c2c"/>
-  <!-- mouth: gentle smile -->
-  <path d="M90 113 Q100 122 110 113" fill="#fff6ef" stroke="#5a3520" stroke-width="2.4" stroke-linecap="round"/>
-  <!-- eyes: kind, closed happy arcs -->
-  <path d="M80 86 Q86 80 92 86" fill="none" stroke="#3d2616" stroke-width="3" stroke-linecap="round"/>
-  <path d="M108 86 Q114 80 120 86" fill="none" stroke="#3d2616" stroke-width="3" stroke-linecap="round"/>
-  <!-- brows -->
-  <path d="M79 76 Q86 72 93 75" fill="none" stroke="#6b4226" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M107 75 Q114 72 121 76" fill="none" stroke="#6b4226" stroke-width="2.4" stroke-linecap="round"/>
+  <ellipse cx="54" cy="98" rx="6" ry="9" fill="#f1c6a1"/>
+  <ellipse cx="146" cy="98" rx="6" ry="9" fill="#f1c6a1"/>
+  <!-- soft hair swoops, parted in the middle -->
+  <path d="M54 92 C50 58 72 38 100 40 C96 56 82 70 58 80 Z" fill="#7d4f2e"/>
+  <path d="M146 92 C150 58 128 38 100 40 C104 56 118 70 142 80 Z" fill="#7d4f2e"/>
+  <path d="M50 88 C48 118 54 140 66 156 L58 158 C46 140 42 116 46 90 Z" fill="#6a4228"/>
+  <path d="M150 88 C152 118 146 140 134 156 L142 158 C154 140 158 116 154 90 Z" fill="#6a4228"/>
+  <!-- short, fluffy beard -->
+  <path d="M62 106 C64 128 80 140 100 140 C120 140 136 128 138 106 C132 116 124 120 116 119 C110 116 90 116 84 119 C76 120 68 116 62 106 Z" fill="#7d4f2e"/>
+  <!-- happy smile -->
+  <path d="M90 121 Q100 131 110 121 Z" fill="#fff6ef" stroke="#5a3520" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- big sparkly eyes -->
+  <ellipse cx="81" cy="96" rx="7" ry="8.5" fill="#3a2414"/>
+  <ellipse cx="119" cy="96" rx="7" ry="8.5" fill="#3a2414"/>
+  <circle cx="83.5" cy="92.5" r="2.8" fill="#fff"/>
+  <circle cx="121.5" cy="92.5" r="2.8" fill="#fff"/>
+  <circle cx="78.8" cy="99.5" r="1.3" fill="#fff" opacity=".85"/>
+  <circle cx="116.8" cy="99.5" r="1.3" fill="#fff" opacity=".85"/>
+  <!-- gentle brows -->
+  <path d="M73 82 Q80 78 88 81" fill="none" stroke="#6a4228" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M112 81 Q120 78 127 82" fill="none" stroke="#6a4228" stroke-width="2.4" stroke-linecap="round"/>
   <!-- rosy cheeks -->
-  <ellipse cx="76" cy="98" rx="7" ry="4.5" fill="#f19c8c" opacity=".55"/>
-  <ellipse cx="124" cy="98" rx="7" ry="4.5" fill="#f19c8c" opacity=".55"/>
-  <!-- nose -->
-  <path d="M100 90 Q97 99 101 101" fill="none" stroke="#d9a47f" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="70" cy="110" rx="8" ry="5" fill="#f3958a" opacity=".55"/>
+  <ellipse cx="130" cy="110" rx="8" ry="5" fill="#f3958a" opacity=".55"/>
+  <!-- button nose -->
+  <ellipse cx="100" cy="108" rx="3" ry="2.2" fill="#e9b28c"/>
 </svg>

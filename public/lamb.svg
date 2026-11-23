@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 84" role="img" aria-label="A fluffy little lamb">
+  <!-- legs -->
+  <g fill="#6b5a4e"><rect x="30" y="58" width="7" height="20" rx="3.5"/><rect x="44" y="60" width="7" height="18" rx="3.5"/><rect x="60" y="60" width="7" height="18" rx="3.5"/><rect x="72" y="58" width="7" height="20" rx="3.5"/></g>
+  <!-- fluffy wool body -->
+  <g fill="#fffdf9" stroke="#e6ddd0" stroke-width="2">
+    <circle cx="36" cy="46" r="15"/><circle cx="52" cy="38" r="16"/><circle cx="68" cy="42" r="15"/><circle cx="78" cy="52" r="12"/>
+    <circle cx="62" cy="58" r="13"/><circle cx="44" cy="58" r="13"/><circle cx="30" cy="56" r="11"/>
+  </g>
+  <ellipse cx="55" cy="50" rx="24" ry="13" fill="#fffdf9"/>
+  <!-- tail -->
+  <circle cx="88" cy="44" r="6" fill="#fffdf9" stroke="#e6ddd0" stroke-width="2"/>
+  <!-- head -->
+  <ellipse cx="9" cy="38" rx="7" ry="4" transform="rotate(-25 9 38)" fill="#7a685b"/>
+  <ellipse cx="41" cy="34" rx="7" ry="4" transform="rotate(25 41 34)" fill="#7a685b"/>
+  <ellipse cx="25" cy="40" rx="14" ry="15" fill="#7a685b"/>
+  <g fill="#fffdf9" stroke="#e6ddd0" stroke-width="2"><circle cx="18" cy="26" r="6"/><circle cx="25" cy="23" r="7"/><circle cx="32" cy="26" r="6"/></g>
+  <!-- face -->
+  <ellipse cx="19.5" cy="40" rx="3" ry="3.6" fill="#2b1d14"/><ellipse cx="30.5" cy="40" rx="3" ry="3.6" fill="#2b1d14"/>
+  <circle cx="20.6" cy="38.6" r="1.2" fill="#fff"/><circle cx="31.6" cy="38.6" r="1.2" fill="#fff"/>
+  <ellipse cx="15" cy="46" rx="3.2" ry="2" fill="#f3958a" opacity=".7"/><ellipse cx="35" cy="46" rx="3.2" ry="2" fill="#f3958a" opacity=".7"/>
+  <path d="M22 48 Q25 51 28 48" fill="none" stroke="#2b1d14" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
