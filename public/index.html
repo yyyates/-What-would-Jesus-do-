@@ -7,7 +7,7 @@
 <meta name="description" content="Ask any life question and receive guidance from the teachings of Jesus, with Bible verses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=5">
+<link rel="stylesheet" href="/style.css?v=6">
 <link rel="icon" href="/jesus.svg" type="image/svg+xml">
 <meta property="og:title" content="What Would Jesus Do">
 <meta property="og:description" content="Ask any life question and see what Jesus taught about it, with Bible verses.">
@@ -19,21 +19,17 @@
     <div class="buddies">
     <img class="buddy" id="buddy" src="/jesus.svg" alt="A friendly illustrated Jesus smiling with open arms" width="200" height="220">
       <img class="pal dove" src="/dove.svg" alt="" width="90" height="64">
-      <img class="critter butterfly" src="/friends/butterfly.svg" alt="" width="54" height="44">
-      <img class="critter hedgehog" src="/friends/hedgehog.svg" alt="" width="84" height="60">
+      <img class="pal lamb" src="/lamb.svg" alt="" width="100" height="84">
     </div>
     <div class="bubble">
-      <img class="critter cat" src="/friends/cat.svg" alt="" width="100" height="56">
       <p class="bq">“Come unto me, all ye that labour and are heavy laden, and I will give you rest.”</p>
       <p class="bref">Matthew 11:28</p>
     </div>
   </section>
   <h1 id="h1">What's on your heart today?</h1>
-  <p class="sub" id="sub">Talk with Jesus about anything, big or small. Get personal answers in his words, with the Bible verses behind them.</p>
+  <p class="sub" id="sub">Talk with Jesus about anything, big or small. Get a gentle, personal answer in his words, with the Bible verses behind it.</p>
   <div id="out" aria-live="polite"></div>
   <form id="f">
-    <img class="critter peek bunny" src="/friends/bunny.svg" alt="" width="80" height="74">
-    <img class="critter peek chick" src="/friends/chick.svg" alt="" width="64" height="58">
     <textarea id="q" maxlength="1500" placeholder="Ask Jesus anything…" required></textarea>
     <div class="row">
       <div class="chips">
@@ -44,6 +40,38 @@
       <div class="btns"><button class="ghost" id="newchat" type="button" hidden>New chat</button><button class="go" id="b">Send</button></div>
     </div>
   </form>
+  <div class="landing" id="landing">
+    <p class="streak" id="streak" hidden></p>
+    <section class="votd card" aria-labelledby="votdH">
+      <p class="eyebrow" id="votdH">Today's verse</p>
+      <p class="votd-text" id="votdText"></p>
+      <div class="votd-foot"><span class="ref" id="votdRef"></span><button class="ghost" id="votdAsk" type="button">Ask Jesus about this verse</button></div>
+    </section>
+
+    <h2 class="h2 center">Not sure where to start?</h2>
+    <div class="topics">
+      <button class="topic" type="button" data-q="I've been feeling anxious and worried lately. What would you say to me?"><span class="ti">🕊️</span><b>Worry &amp; anxiety</b><small>Find peace when your mind won't rest</small></button>
+      <button class="topic" type="button" data-q="How can I love the people in my life better, even when it's hard?"><span class="ti">💛</span><b>Love &amp; relationships</b><small>Family, friends, partners, coworkers</small></button>
+      <button class="topic" type="button" data-q="Someone hurt me and I don't know how to forgive them. What should I do?"><span class="ti">🤝</span><b>Forgiveness</b><small>Letting go, and being forgiven</small></button>
+      <button class="topic" type="button" data-q="I'm not sure what my purpose is. How do I find it?"><span class="ti">🌅</span><b>Purpose</b><small>Work, calling, and what's next</small></button>
+      <button class="topic" type="button" data-q="I lost someone I love and I'm grieving. Can you comfort me?"><span class="ti">🕯️</span><b>Grief &amp; loss</b><small>Comfort for a heavy heart</small></button>
+      <button class="topic" type="button" data-q="Sometimes I doubt my faith. Is that okay?"><span class="ti">✨</span><b>Faith &amp; doubt</b><small>Honest questions are welcome</small></button>
+    </div>
+
+    <h2 class="h2 center">How it works</h2>
+    <ol class="steps">
+      <li><span>1</span><b>Share what's on your heart</b><small>Anything at all. There are no wrong questions.</small></li>
+      <li><span>2</span><b>Hear a gentle answer</b><small>Written in the voice of Jesus, from his teachings.</small></li>
+      <li><span>3</span><b>See the Scripture</b><small>Every answer shows the exact Bible verses behind it.</small></li>
+    </ol>
+
+    <section class="promo card" id="promo" hidden>
+      <div><p class="eyebrow">Premium</p><b>Keep the conversation going</b><small>Unlimited messages and your conversations saved. Cancel anytime.</small></div>
+      <a class="go" href="/account">Try Premium · <span id="promoPrice">$3.99/mo</span></a>
+    </section>
+    <p class="welcome-all">Everyone is welcome here, whatever your background or beliefs. 🤍</p>
+  </div>
+
   <div class="upsell" id="upsell" hidden>
     <strong>Go deeper with Premium</strong>
     <p>Unlimited messages, and your conversations saved.</p>
@@ -51,10 +79,10 @@
   </div>
   <section id="hist" hidden><h2 class="h2">Your recent conversations</h2><ul id="histList"></ul></section>
   <div class="donate" id="donate">This site is free and runs on gifts. If it has blessed you, <a id="donateLink" href="#" target="_blank" rel="noopener">help keep it going</a>.</div>
-  <footer><img class="critter turtle" src="/friends/turtle.svg" alt="" width="90" height="52">Answers are written by AI in the voice of Jesus, based on his teachings in the Bible. They are not actually from Jesus or God, and they are not a substitute for your pastor, church community, or professional medical, legal or mental-health help. Verses are quoted from the King James Version (public domain). If you are in crisis in the US, call or text 988.
+  <footer>Answers are written by AI in the voice of Jesus, based on his teachings in the Bible. They are not actually from Jesus or God, and they are not a substitute for your pastor, church community, or professional medical, legal or mental-health help. Verses are quoted from the King James Version (public domain). If you are in crisis in the US, call or text 988.
     <div class="nav"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div></footer>
 </main>
 <script src="/app.js"></script>
-<script src="/friends.js?v=5"></script>
+<script src="/home.js?v=6"></script>
 </body>
 </html>

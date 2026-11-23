@@ -1,51 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="A cute cartoon Jesus smiling and waving">
-<defs>
-<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff6d6"/><stop offset=".65" stop-color="#ffe9a8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
-<linearGradient id="robe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdfa"/><stop offset="1" stop-color="#f4ecff"/></linearGradient>
-<linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6a48"/><stop offset="1" stop-color="#82573a"/></linearGradient>
-</defs>
-<circle cx="100" cy="92" r="92" fill="url(#glow)"/>
-<ellipse cx="100" cy="30" rx="46" ry="11" fill="none" stroke="#ffd45e" stroke-width="5" opacity=".9"><animate attributeName="cy" values="30;26;30" dur="3s" repeatCount="indefinite"/></ellipse>
-<polygon points="30.0,37.0 31.9,42.1 37.0,44.0 31.9,45.9 30.0,51.0 28.1,45.9 23.0,44.0 28.1,42.1" fill="#ffe27a"/><polygon points="172.0,34.0 173.6,38.4 178.0,40.0 173.6,41.6 172.0,46.0 170.4,41.6 166.0,40.0 170.4,38.4" fill="#ffe27a"/><polygon points="178.0,115.0 179.3,118.7 183.0,120.0 179.3,121.3 178.0,125.0 176.7,121.3 173.0,120.0 176.7,118.7" fill="#ffc7dc"/><polygon points="22.0,123.0 23.3,126.7 27.0,128.0 23.3,129.3 22.0,133.0 20.7,129.3 17.0,128.0 20.7,126.7" fill="#c9e4ff"/>
-<!-- tiny body -->
-<path d="M66 220 C64 192 78 174 100 172 C122 174 136 192 134 220 Z" fill="url(#robe)" stroke="#e6dcef" stroke-width="2.5"/>
-<path d="M84 176 C96 190 110 206 116 220 L104 220 C98 206 88 192 78 182 Z" fill="#ffb1c4"/>
-<path d="M100 206 C95 202 92 199 92 196 C92 193 94.5 191.5 96.8 191.5 C98.4 191.5 99.4 192.6 100 193.6 C100.6 192.6 101.6 191.5 103.2 191.5 C105.5 191.5 108 193 108 196 C108 199 105 202 100 206 Z" fill="#ff8fab"/>
-<!-- big head -->
-<path d="M34 100 C30 54 62 34 100 34 C138 34 170 54 166 100 C168 128 162 156 150 174 C140 178 128 176 122 170 L78 170 C72 176 60 178 50 174 C38 156 32 128 34 100 Z" fill="url(#hair)"/>
-<ellipse cx="44" cy="108" rx="7" ry="10" fill="#f8cdb3"/><ellipse cx="156" cy="108" rx="7" ry="10" fill="#f8cdb3"/>
-<ellipse cx="100" cy="106" rx="56" ry="54" fill="#ffe3cf"/>
-<!-- rounded bangs parted in the middle -->
-<path d="M44 96 C40 60 66 42 100 44 C96 62 80 76 50 86 C48 90 46 93 44 96 Z" fill="#9a6a48"/>
-<path d="M156 96 C160 60 134 42 100 44 C104 62 120 76 150 86 C152 90 154 93 156 96 Z" fill="#9a6a48"/>
-<path d="M70 52 C80 46 90 46 96 48" fill="none" stroke="#c49473" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-<path d="M40 96 C38 126 44 150 56 168 L48 172 C36 152 32 126 36 98 Z" fill="#82573a"/>
-<path d="M160 96 C162 126 156 150 144 168 L152 172 C164 152 168 126 164 98 Z" fill="#82573a"/>
-<!-- stubby waving arms -->
-<g><animateTransform attributeName="transform" type="rotate" values="0 76 186;-8 76 186;0 76 186" dur="1.6s" repeatCount="indefinite"/>
-<path d="M76 188 C58 186 42 178 34 162" fill="none" stroke="#e6dcef" stroke-width="18" stroke-linecap="round"/>
-<path d="M76 188 C58 186 42 178 34 162" fill="none" stroke="#fffdfa" stroke-width="14" stroke-linecap="round"/>
-<circle cx="32" cy="155" r="9" fill="#ffe3cf" stroke="#f8cdb3" stroke-width="1.5"/></g>
-<g><animateTransform attributeName="transform" type="rotate" values="0 124 186;8 124 186;0 124 186" dur="1.6s" begin=".8s" repeatCount="indefinite"/>
-<path d="M124 188 C142 186 158 178 166 162" fill="none" stroke="#e6dcef" stroke-width="18" stroke-linecap="round"/>
-<path d="M124 188 C142 186 158 178 166 162" fill="none" stroke="#fffdfa" stroke-width="14" stroke-linecap="round"/>
-<circle cx="168" cy="155" r="9" fill="#ffe3cf" stroke="#f8cdb3" stroke-width="1.5"/></g>
-<!-- soft little beard -->
-<path d="M72 134 C74 144 80 150 86 153 Q90 159 94 155 Q100 161 106 155 Q110 159 114 153 C120 150 126 144 128 134 C122 140 116 142 110 141 C106 138 94 138 90 141 C84 142 78 140 72 134 Z" fill="#a8774f"/>
-<!-- happy open smile -->
-<path d="M91 139 Q100 150 109 139 Z" fill="#c2566a"/>
-<path d="M94.5 143.5 Q100 148.5 105.5 143.5 Q100 141.5 94.5 143.5 Z" fill="#ff9fb2"/>
-<!-- huge sparkly eyes -->
-<g transform="translate(78 110)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 .08;1 1" keyTimes="0;.93;.965;1" dur="4.2s" repeatCount="indefinite"/><g transform="translate(-78 -110)"><g><ellipse cx="78" cy="110" rx="11.049999999999999" ry="13" fill="#3b2433"/>
-<ellipse cx="78" cy="115.85" rx="7.7349999999999985" ry="5.46" fill="#7a4e6e" opacity=".85"/>
-<ellipse cx="81.536" cy="105.06" rx="4.640999999999999" ry="4.42" fill="#fff"/>
-<circle cx="73.801" cy="115.2" r="2.08" fill="#fff" opacity=".9"/></g></g></g></g>
-<g transform="translate(122 110)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 .08;1 1" keyTimes="0;.93;.965;1" dur="4.2s" repeatCount="indefinite"/><g transform="translate(-122 -110)"><g><ellipse cx="122" cy="110" rx="11.049999999999999" ry="13" fill="#3b2433"/>
-<ellipse cx="122" cy="115.85" rx="7.7349999999999985" ry="5.46" fill="#7a4e6e" opacity=".85"/>
-<ellipse cx="125.536" cy="105.06" rx="4.640999999999999" ry="4.42" fill="#fff"/>
-<circle cx="117.801" cy="115.2" r="2.08" fill="#fff" opacity=".9"/></g></g></g></g>
-<path d="M68 92 Q76 88 84 91" fill="none" stroke="#82573a" stroke-width="2.6" stroke-linecap="round"/>
-<path d="M116 91 Q124 88 132 92" fill="none" stroke="#82573a" stroke-width="2.6" stroke-linecap="round"/>
-<ellipse cx="62" cy="128" rx="9" ry="4.95" fill="#ffaab8" opacity=".7"/><path d="M57.5 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M60.92 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M64.34 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><ellipse cx="138" cy="128" rx="9" ry="4.95" fill="#ffaab8" opacity=".7"/><path d="M133.5 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M136.92 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M140.34 129.7325 l1.6199999999999999 -3.465" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/>
-<ellipse cx="100" cy="125" rx="2.6" ry="1.8" fill="#f2b49a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="A friendly illustrated Jesus smiling and waving">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff0c4" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#ffe08f" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffd978" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="robe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1e8d9"/>
+    </linearGradient>
+    <linearGradient id="sash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9644b"/><stop offset="1" stop-color="#b44a35"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7d4f2e"/><stop offset="1" stop-color="#5e3a22"/>
+    </linearGradient>
+  </defs>
+  <!-- soft glow and halo -->
+  <circle cx="100" cy="84" r="84" fill="url(#glow)"/>
+  <circle cx="100" cy="80" r="66" fill="none" stroke="#f4c55a" stroke-width="3.5" opacity=".65"/>
+  <!-- little round body in a robe -->
+  <path d="M56 220 C56 184 74 160 100 158 C126 160 144 184 144 220 Z" fill="url(#robe)" stroke="#dccdb4" stroke-width="2.5"/>
+  <!-- waving arms -->
+  <path d="M72 178 C58 176 46 166 40 152" fill="none" stroke="#dccdb4" stroke-width="20" stroke-linecap="round"/>
+  <path d="M128 178 C142 176 154 166 160 152" fill="none" stroke="#dccdb4" stroke-width="20" stroke-linecap="round"/>
+  <path d="M72 178 C58 176 46 166 40 152" fill="none" stroke="#fbf6ec" stroke-width="16" stroke-linecap="round"/>
+  <path d="M128 178 C142 176 154 166 160 152" fill="none" stroke="#fbf6ec" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="38" cy="145" r="9.5" fill="#f6d2b0" stroke="#e8b48d" stroke-width="1.5"/>
+  <circle cx="162" cy="145" r="9.5" fill="#f6d2b0" stroke="#e8b48d" stroke-width="1.5"/>
+  <!-- sash -->
+  <path d="M80 164 C98 180 114 200 122 220 L106 220 C99 202 87 186 72 172 Z" fill="url(#sash)"/>
+  <!-- heart on the robe -->
+  <path d="M100 200 C93 194 89 190 89 186 C89 182 92 180 95 180 C97.5 180 99 181.5 100 183 C101 181.5 102.5 180 105 180 C108 180 111 182 111 186 C111 190 107 194 100 200 Z" fill="#f19c8c" opacity=".85"/>
+  <!-- hair back, falling to the shoulders -->
+  <path d="M42 90 C38 46 66 22 100 22 C134 22 162 46 158 90 C160 116 154 142 140 158 C128 150 116 146 112 146 L88 146 C84 146 72 150 60 158 C46 142 40 116 42 90 Z" fill="url(#hair)"/>
+  <!-- neck and collar -->
+  <path d="M89 128 L111 128 L112 162 L88 162 Z" fill="#f1c6a1"/>
+  <path d="M84 160 Q100 172 116 160" fill="none" stroke="#e2d6c2" stroke-width="2"/>
+  <!-- big round face -->
+  <ellipse cx="100" cy="94" rx="46" ry="44" fill="#f8d6b6"/>
+  <!-- ears -->
+  <ellipse cx="54" cy="98" rx="6" ry="9" fill="#f1c6a1"/>
+  <ellipse cx="146" cy="98" rx="6" ry="9" fill="#f1c6a1"/>
+  <!-- soft hair swoops, parted in the middle -->
+  <path d="M54 92 C50 58 72 38 100 40 C96 56 82 70 58 80 Z" fill="#7d4f2e"/>
+  <path d="M146 92 C150 58 128 38 100 40 C104 56 118 70 142 80 Z" fill="#7d4f2e"/>
+  <path d="M50 88 C48 118 54 140 66 156 L58 158 C46 140 42 116 46 90 Z" fill="#6a4228"/>
+  <path d="M150 88 C152 118 146 140 134 156 L142 158 C154 140 158 116 154 90 Z" fill="#6a4228"/>
+  <!-- short, fluffy beard -->
+  <path d="M62 106 C64 128 80 140 100 140 C120 140 136 128 138 106 C132 116 124 120 116 119 C110 116 90 116 84 119 C76 120 68 116 62 106 Z" fill="#7d4f2e"/>
+  <!-- happy smile -->
+  <path d="M90 121 Q100 131 110 121 Z" fill="#fff6ef" stroke="#5a3520" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- big sparkly eyes -->
+  <ellipse cx="81" cy="96" rx="7" ry="8.5" fill="#3a2414"/>
+  <ellipse cx="119" cy="96" rx="7" ry="8.5" fill="#3a2414"/>
+  <circle cx="83.5" cy="92.5" r="2.8" fill="#fff"/>
+  <circle cx="121.5" cy="92.5" r="2.8" fill="#fff"/>
+  <circle cx="78.8" cy="99.5" r="1.3" fill="#fff" opacity=".85"/>
+  <circle cx="116.8" cy="99.5" r="1.3" fill="#fff" opacity=".85"/>
+  <!-- gentle brows -->
+  <path d="M73 82 Q80 78 88 81" fill="none" stroke="#6a4228" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M112 81 Q120 78 127 82" fill="none" stroke="#6a4228" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- rosy cheeks -->
+  <ellipse cx="70" cy="110" rx="8" ry="5" fill="#f3958a" opacity=".55"/>
+  <ellipse cx="130" cy="110" rx="8" ry="5" fill="#f3958a" opacity=".55"/>
+  <!-- button nose -->
+  <ellipse cx="100" cy="108" rx="3" ry="2.2" fill="#e9b28c"/>
 </svg>
