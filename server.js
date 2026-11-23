@@ -166,7 +166,13 @@ app.use(helmet({
 }));
 app.use(express.json({ limit: "40kb" }));
 app.use(cookieParser());
-app.use(express.static(__dirname + "/public", { extensions: ["html"], maxAge: "1h" }));
+app.use(express.static(__dirname + "/public", {
+  extensions: ["html"],
+  maxAge: "1h",
+  // Pages must revalidate so visitors get new features right after a deploy;
+  // images, styles and scripts can still be cached for an hour.
+  setHeaders: (res, path) => { if (path.endsWith(".html")) res.setHeader("Cache-Control", "no-cache"); },
+}));
 
 app.get("/healthz", async (req, res) => {
   if (req.query.check === undefined || MOCK) return res.json({ ok: true, mode: MOCK ? "demo" : "live", model: MODEL });
