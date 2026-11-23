@@ -1,15 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 54" role="img" aria-label="A little white dove carrying an olive branch">
-<path d="M66 36 L86 28 L84 36 L88 42 L68 44 Z" fill="#f4f7ff" stroke="#cfd8ea" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M14 30 C14 18 24 14 32 16 C42 18 52 26 70 34 C64 48 46 52 32 50 C20 48 14 40 14 30 Z" fill="#fff" stroke="#cfd8ea" stroke-width="1.5"/>
-<g><animateTransform attributeName="transform" type="rotate" values="0 44 32;-25 44 32;0 44 32" dur=".7s" repeatCount="indefinite"/>
-<path d="M38 32 C34 16 40 6 52 2 C54 14 54 26 48 36 Z" fill="#fff" stroke="#cfd8ea" stroke-width="1.5"/></g>
-<path d="M10 26 C6 30 3 34 1 40" fill="none" stroke="#86a85a" stroke-width="1.8" stroke-linecap="round"/>
-<ellipse cx="5" cy="31" rx="4.5" ry="2" transform="rotate(-50 5 31)" fill="#a3c46d"/>
-<ellipse cx="7" cy="36" rx="4.5" ry="2" transform="rotate(30 7 36)" fill="#a3c46d"/>
-<path d="M15 26 L8 28 L15 31 Z" fill="#ffb35c"/>
-<g transform="translate(24 26)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 .08;1 1" keyTimes="0;.93;.965;1" dur="4.2s" repeatCount="indefinite"/><g transform="translate(-24 -26)"><g><ellipse cx="24" cy="26" rx="3.74" ry="4.4" fill="#3b2433"/>
-<ellipse cx="24" cy="27.98" rx="2.618" ry="1.848" fill="#7a4e6e" opacity=".85"/>
-<ellipse cx="25.1968" cy="24.328" rx="1.5708" ry="1.4960000000000002" fill="#fff"/>
-<circle cx="22.5788" cy="27.76" r="0.7040000000000001" fill="#fff" opacity=".9"/></g></g></g></g>
-<ellipse cx="27" cy="34" rx="4" ry="2.2" fill="#ffaab8" opacity=".7"/><path d="M25.0 34.77 l0.72 -1.54" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M26.52 34.77 l0.72 -1.54" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/><path d="M28.04 34.77 l0.72 -1.54" stroke="#f07f8f" stroke-width="1.0" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 64" role="img" aria-label="A little white dove carrying an olive branch">
+  <!-- back wing -->
+  <path d="M42 30 C40 14 48 4 60 2 C58 12 56 22 50 32 Z" fill="#e9eef5" stroke="#cdd6e2" stroke-width="1.5"/>
+  <!-- tail -->
+  <path d="M66 36 L86 28 L84 36 L88 42 L68 44 Z" fill="#f4f7fb" stroke="#cdd6e2" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- body -->
+  <path d="M18 30 C18 22 26 18 32 20 C40 22 50 28 70 34 C64 46 48 50 36 48 C26 46 18 40 18 30 Z" fill="#ffffff" stroke="#cdd6e2" stroke-width="1.5"/>
+  <!-- front wing -->
+  <g class="wing"><path d="M38 32 C34 16 40 6 52 2 C54 14 54 26 48 36 Z" fill="#ffffff" stroke="#cdd6e2" stroke-width="1.5"/>
+  <path d="M42 26 Q46 18 50 12 M44 32 Q48 26 51 20" fill="none" stroke="#dde4ee" stroke-width="1.4" stroke-linecap="round"/></g>
+  <!-- beak and olive branch -->
+  <path d="M12 26 C8 30 4 34 2 40" fill="none" stroke="#7a8b3a" stroke-width="1.8" stroke-linecap="round"/>
+  <ellipse cx="6" cy="31" rx="4.5" ry="2" transform="rotate(-50 6 31)" fill="#8fa14a"/>
+  <ellipse cx="9" cy="36" rx="4.5" ry="2" transform="rotate(30 9 36)" fill="#8fa14a"/>
+  <ellipse cx="3" cy="38" rx="4" ry="1.8" transform="rotate(-70 3 38)" fill="#8fa14a"/>
+  <path d="M19 26 L11 27 L18 30 Z" fill="#f3b04a"/>
+  <!-- eye and blush -->
+  <circle cx="25" cy="25" r="2.4" fill="#2b1d14"/><circle cx="25.8" cy="24.2" r=".9" fill="#fff"/>
+  <ellipse cx="26" cy="31" rx="3" ry="1.8" fill="#f3958a" opacity=".6"/>
 </svg>
