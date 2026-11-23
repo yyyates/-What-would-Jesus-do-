@@ -7,13 +7,14 @@ if (params.get("welcome")) msg("Welcome to Premium! Your subscription is active.
 if (params.get("error")) msg("We couldn't confirm your payment yet. If you were charged, refresh this page in a minute or contact us.", "err");
 
 fetch("/api/me").then(r => r.json()).then(m => {
+  if (m.testMode) $("testmode").hidden = false;
   if (m.premium) {
     $("member").hidden = false;
     $("code").textContent = m.code;
   } else if (m.available) {
     $("join").hidden = false;
     $("restore").hidden = false;
-    document.querySelectorAll("[data-plan]").forEach(b => { if (!m.plans[b.dataset.plan]) b.hidden = true; });
+    document.querySelectorAll("[data-plan]").forEach(b => { const p = m.plans[b.dataset.plan]; if (!p) b.hidden = true; else if (p.label) b.textContent = p.label; });
   } else {
     $("soon").hidden = false;
   }

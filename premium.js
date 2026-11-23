@@ -9,6 +9,7 @@ const SECRET = process.env.SESSION_SECRET || "";
 const KEY = process.env.STRIPE_SECRET_KEY || "";
 const PRICES = { monthly: process.env.STRIPE_PRICE_MONTHLY || "", yearly: process.env.STRIPE_PRICE_YEARLY || "" };
 const ENABLED = Boolean(KEY && SECRET && (PRICES.monthly || PRICES.yearly));
+const TEST_MODE = /^(sk|rk)_test_/.test(KEY);
 const COOKIE = "wwjd_premium";
 const ACTIVE = new Set(["active", "trialing", "past_due"]);
 
@@ -58,6 +59,44 @@ function setCookie(res, req, customerId) {
   });
 }
 
+// Button labels come from the real Stripe prices, so the site always shows what Stripe will charge.
+let planCache = { at: 0, plans: null };
+const money = (cents, cur) => new Intl.NumberFormat("en-US", { style: "currency", currency: cur.toUpperCase(), minimumFractionDigits: cents % 100 ? 2 : 0 }).format(cents / 100);
+function describe(price) {
+  const r = price.recurring;
+  if (!r) return { problem: "This price is one-time. Premium needs a recurring price." };
+  if (!price.active) return { problem: "This price is archived in Stripe." };
+  const every = r.interval_count > 1 ? `${r.interval_count} ${r.interval}s` : r.interval;
+  return { label: `${money(price.unit_amount, price.currency)} / ${every}`, cents: price.unit_amount, interval: r.interval, count: r.interval_count };
+}
+async function loadPlans() {
+  const fine = planCache.plans && Object.values(planCache.plans).every((p) => !p || p.label);
+  if (planCache.plans && Date.now() - planCache.at < (fine ? 60 * 60_000 : 60_000)) return planCache.plans;
+  const plans = {};
+  for (const [name, id] of Object.entries(PRICES)) {
+    if (!id) { plans[name] = null; continue; }
+    try { plans[name] = describe(await stripe.prices.retrieve(id)); }
+    catch (err) {
+      plans[name] = { problem: err.type === "StripeAuthenticationError" ? "Stripe didn't accept the secret key." :
+        err.code === "resource_missing" ? `Stripe has no price with this ID in ${TEST_MODE ? "test" : "live"} mode. Test and live mode have different price IDs.` : err.message };
+    }
+  }
+  const m = plans.monthly, y = plans.yearly;
+  if (m?.label && y?.label && m.interval === "month" && m.count === 1 && y.interval === "year" && y.count === 1) {
+    const save = Math.round((1 - y.cents / (m.cents * 12)) * 100);
+    if (save >= 5) y.label += ` (save ${save}%)`;
+  }
+  planCache = { at: Date.now(), plans };
+  return plans;
+}
+const publicPlans = async () => {
+  let plans = {};
+  try { plans = await loadPlans(); } catch {}
+  const out = {};
+  for (const name of Object.keys(PRICES)) out[name] = PRICES[name] ? { label: plans[name]?.label || null } : false;
+  return out;
+};
+
 const baseUrl = (req) => process.env.PUBLIC_URL || `${req.protocol}://${req.get("host")}`;
 
 function routes(app) {
@@ -97,8 +136,28 @@ function routes(app) {
 
   app.get("/api/me", async (req, res) => {
     const id = await premiumCustomer(req);
-    res.json({ available: ENABLED, premium: Boolean(id), code: id ? makeCode(id) : null,
-      plans: { monthly: Boolean(PRICES.monthly), yearly: Boolean(PRICES.yearly) } });
+    res.json({ available: ENABLED, premium: Boolean(id), code: id ? makeCode(id) : null, testMode: ENABLED && TEST_MODE,
+      plans: ENABLED ? await publicPlans() : { monthly: false, yearly: false } });
+  });
+
+  // Setup check: open /api/premium/check to see whether Stripe is set up right. Never shows keys.
+  let lastCheck = 0;
+  app.get("/api/premium/check", async (_req, res) => {
+    const missing = [["STRIPE_SECRET_KEY", KEY], ["SESSION_SECRET", SECRET]].filter(([, v]) => !v).map(([k]) => k);
+    if (!PRICES.monthly && !PRICES.yearly) missing.push("STRIPE_PRICE_MONTHLY or STRIPE_PRICE_YEARLY");
+    if (missing.length) return res.json({ ok: false, premium: "hidden", problem: `Missing in Render's Environment tab: ${missing.join(", ")}.` });
+    if (KEY.startsWith("pk_")) return res.json({ ok: false, problem: "STRIPE_SECRET_KEY holds the publishable key (pk_). Use the secret key (sk_) instead." });
+    if (Date.now() - lastCheck < 30_000) return res.json({ ok: null, note: "Checked a moment ago. Try again in 30 seconds." });
+    lastCheck = Date.now();
+    planCache.at = 0;
+    const plans = await loadPlans();
+    let portal = "unknown";
+    try { portal = (await stripe.billingPortal.configurations.list({ limit: 1 })).data.length ? "activated" : "not activated yet (Settings > Billing > Customer portal)"; } catch {}
+    const ok = Object.values(plans).every((p) => !p || p.label) && Object.values(plans).some((p) => p?.label);
+    res.json({ ok, mode: TEST_MODE ? "test (no real charges)" : "live (real charges)",
+      monthly: plans.monthly ? plans.monthly.label || plans.monthly.problem : "not set",
+      yearly: plans.yearly ? plans.yearly.label || plans.yearly.problem : "not set",
+      customerPortal: portal });
   });
 
   // Use a Premium code on another phone or computer.
@@ -131,4 +190,4 @@ function routes(app) {
   app.post("/api/signout", (req, res) => { res.clearCookie(COOKIE, { path: "/" }); res.json({ ok: true }); });
 }
 
-module.exports = { routes, premiumCustomer, ENABLED, makeCode, readCode };
+module.exports = { routes, premiumCustomer, ENABLED, TEST_MODE, makeCode, readCode };
