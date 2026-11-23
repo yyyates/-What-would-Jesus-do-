@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 52" role="img" aria-label="A little turtle">
+  <g fill="#9ccf7a" stroke="#79ad58" stroke-width="1.6"><ellipse cx="26" cy="44" rx="6" ry="5"/><ellipse cx="58" cy="44" rx="6" ry="5"/><path d="M70 36 L80 38 L70 42 Z"/></g>
+  <path d="M10 40 C10 18 26 8 42 8 C58 8 74 18 74 40 Z" fill="#6fae6a" stroke="#4f8d4c" stroke-width="2"/>
+  <path d="M30 14 L42 22 L54 14 M42 22 L42 40 M22 26 L42 22 L62 26 M18 40 L28 28 M66 40 L56 28" fill="none" stroke="#4f8d4c" stroke-width="1.6" stroke-linejoin="round"/>
+  <rect x="8" y="38" width="68" height="5" rx="2.5" fill="#cfe7b0" stroke="#79ad58" stroke-width="1.4"/>
+  <circle cx="8" cy="30" r="10" fill="#9ccf7a" stroke="#79ad58" stroke-width="1.6"/>
+  <ellipse cx="5" cy="28" rx="2.2" ry="2.8" fill="#2b1d14"/><circle cx="5.7" cy="27" r=".9" fill="#fff"/>
+  <ellipse cx="9" cy="34" rx="3" ry="1.8" fill="#f3958a" opacity=".6"/>
+  <path d="M0 33 Q2 35 4 33" fill="none" stroke="#2b1d14" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 58" role="img" aria-label="A baby chick peeking over">
+  <path d="M30 8 Q28 1 33 3 Q34 0 37 4" fill="none" stroke="#f2b632" stroke-width="2.4" stroke-linecap="round"/>
+  <ellipse cx="32" cy="34" rx="24" ry="23" fill="#ffd95a" stroke="#f1bf3a" stroke-width="2"/>
+  <ellipse cx="24" cy="31" rx="3" ry="3.6" fill="#2b1d14"/><ellipse cx="40" cy="31" rx="3" ry="3.6" fill="#2b1d14"/>
+  <circle cx="25" cy="29.7" r="1.1" fill="#fff"/><circle cx="41" cy="29.7" r="1.1" fill="#fff"/>
+  <path d="M28 37 L36 37 L32 42 Z" fill="#f39a3d"/>
+  <ellipse cx="18" cy="39" rx="4" ry="2.4" fill="#f3958a" opacity=".6"/><ellipse cx="46" cy="39" rx="4" ry="2.4" fill="#f3958a" opacity=".6"/>
+  <path d="M8 46 Q4 40 10 36 Q14 44 12 52 Z" fill="#ffcf3f"/><path d="M56 46 Q60 40 54 36 Q50 44 52 52 Z" fill="#ffcf3f"/>
+</svg>

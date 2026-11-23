@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 60" role="img" aria-label="A little hedgehog">
+  <path d="M20 46 L16 30 L24 34 L22 18 L32 26 L34 10 L42 22 L48 8 L52 22 L60 12 L60 26 L70 20 L66 32 L76 30 L70 40 L78 44 L70 50 Z" fill="#8a6447" stroke="#6e4d35" stroke-width="1.6" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="40" rx="26" ry="15" fill="#8a6447"/>
+  <path d="M30 30 C18 30 8 38 6 44 C8 50 18 54 30 52 C38 50 42 44 40 38 C38 33 35 30 30 30 Z" fill="#f2d2b0" stroke="#dcb48f" stroke-width="1.6"/>
+  <circle cx="6.5" cy="44" r="3.2" fill="#2b1d14"/>
+  <ellipse cx="22" cy="40" rx="2.6" ry="3.2" fill="#2b1d14"/><circle cx="22.8" cy="38.8" r="1" fill="#fff"/>
+  <ellipse cx="24" cy="47" rx="4" ry="2.4" fill="#f3958a" opacity=".65"/>
+  <path d="M12 49 Q15 51 18 49" fill="none" stroke="#2b1d14" stroke-width="1.3" stroke-linecap="round"/>
+  <g fill="#6e4d35"><ellipse cx="32" cy="56" rx="5" ry="3"/><ellipse cx="60" cy="56" rx="5" ry="3"/></g>
+</svg>
